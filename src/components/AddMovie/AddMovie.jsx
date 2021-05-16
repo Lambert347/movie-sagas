@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 
