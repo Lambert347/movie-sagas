@@ -4,6 +4,7 @@ import MovieList from '../MovieList/MovieList'
 import AddMovie from '../AddMovie/AddMovie'
 import Details from '../Details/Details'
 
+
 function App() {
   return (
     <div className="App">
@@ -23,8 +24,8 @@ function App() {
         <Route path="/addmovie" exact>
           <AddMovie />
         </Route>
-        <Route path="/details/:id" exact>
-          <Detail />
+        <Route path="/details" exact>
+          <Details />
         </Route>
 
       </Router>

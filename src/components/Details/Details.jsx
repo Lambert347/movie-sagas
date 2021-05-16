@@ -4,18 +4,12 @@ import {useHistory} from 'react-router-dom';
 
 function Details(){
     const dispatch = useDispatch();
-    const [details, setDetails] = useState([]);
-    const getDetails = () => {
-        dispatch({type: 'GET_DETAILS', payload: response.data});
-        setDetails(response.data);
-    }
-    useEffect(() => {
-        getDetails();
-    }, [])
+    const details = useSelector(store => store.details);
+    
     
     return (
         <div>
-            {JSON.stringify(details)}
+            {JSON.stringify(details.description)}
         </div>
     )
 }
