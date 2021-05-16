@@ -12,7 +12,7 @@ function AddMovie(){
     }
     const genre = useSelector(store => store.genres);
     useEffect(() => {
-        dispatch({type: 'SET_GENRE'})
+        dispatch({type: 'GET_GENRES'})
     }, [])
 
     return (
@@ -21,12 +21,13 @@ function AddMovie(){
             <input onChange={(event) => setTitle(event.target.value)} value={title} placeholder="Title of Movie"></input>
             <input onChange={(event) => setPoster(event.target.value)} value={poster} placeholder="Url for Movie Poster"></input>
             <textarea onChange={(event) => setDescription(event.target.value)} value={description} placeholder="Movie Description" />
-            {genre.map(cat => {
-                return <option key={genre.id} value={genre.id}>{genre.name}</option>
-            })}
-            <button>Add Movie</button>
+            <select>
+                {genre.map(genre => {
+                    return <option key={genre.id} value={genre.id}>{genre.name}</option>
+                })}
+            </select>
             
-
+            <button>Add Movie</button>
         </form>
     )
 
