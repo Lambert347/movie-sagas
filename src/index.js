@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('ADD_NEW_MOVIE', addNewMovie);
     yield takeEvery('GET_GENRES', getGenres);
+    yield takeEvery('GET_DETAILS', fetchDetails);
 }
 
 function* fetchAllMovies() {
@@ -30,12 +31,14 @@ function* fetchAllMovies() {
     }
 }
 
-// function* fetchDetails() {
-//     try {
-//         const response = yield axios.get('/api/movie/:id');
-//         console.log('Getting details for movie', movies. )
-//     }
-// }
+function* fetchDetails() {
+    try {
+        const response = yield axios.get('/api/movie/:id');
+        yield put({type: 'SET_DETAILS', payload: response.data});
+    } catch (error) {
+        console.log('Error with getting details from the server')
+    }
+}
 
 function* addNewMovie(action) {
     try {
