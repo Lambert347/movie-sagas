@@ -46,7 +46,7 @@ function AddMovie(){
                     })}
                 </select>
                 
-                <button>Add Movie</button> 
+                <button>Save</button> 
             </form>
             <button onClick={cancelAdd}>Cancel</button>
         </>
