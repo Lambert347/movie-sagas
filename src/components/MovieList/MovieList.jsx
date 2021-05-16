@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import Details from '../Details/Details';
 import {useHistory} from 'react-router-dom';
+import MovieItem from '../MovieItem/MovieItem';
 
 function MovieList() {
     const history = useHistory();
@@ -13,12 +14,11 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
-    const handleClick = () => {
-        dispatch({type: 'GET_DETAILS', payload: movies.id})
-        history.push('/details');
-
-
-    }
+    // const handleClick = () => {
+    //     dispatch({type: 'GET_DETAILS', payload: movies.id});
+    //     console.log(movies.id);
+    //     history.push('/details');
+    // }
 
     return (
         <main>
@@ -26,9 +26,8 @@ function MovieList() {
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} onClick={handleClick} >
-                            <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title} />
+                        <div key={movie.id} >
+                            <MovieItem movie={movie}/>
                         </div>
                     );
                 })}

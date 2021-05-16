@@ -9,7 +9,7 @@ function Details(){
     
     return (
         <div>
-            {JSON.stringify(details.description)}
+            {JSON.stringify(details)}
         </div>
     )
 }
