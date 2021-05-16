@@ -9,7 +9,7 @@ function MovieItem(props) {
     const handleClick = () => {
         dispatch({type: 'GET_DETAILS', payload: movie.id})
         console.log(movie.id)
-        history.push('/detail');
+        history.push('/details');
     }
 
     return (
