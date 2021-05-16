@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import {generatePath, useHistory} from 'react-router-dom';
 
 function Details(){
     const dispatch = useDispatch();
@@ -17,13 +17,23 @@ function Details(){
     
     return (
         <section>
-            {details.map(detail => {
-                return (
-                    <div key={detail.id} >
-                        <img src={detail.poster} />
-                    </div>
-                )
-            })}
+                <h2>{details[0].title}</h2>
+                <img src={details[0].poster} />
+                <div>
+                    <h3>Genres:</h3>
+                    {details.map(movie => {
+                        return (
+                            <div key={movie.id}>
+                                {movie.name}
+                            </div>
+                        )
+                    })}
+                </div>
+                <div>
+                    <h3>Description:</h3>
+                    <p>{details[0].description}</p>
+                </div>
+                
         </section>
     )
 }
