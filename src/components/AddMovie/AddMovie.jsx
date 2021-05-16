@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 
 function AddMovie(){
+    const history = useHistory();
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [poster, setPoster] = useState('');
@@ -19,8 +21,12 @@ function AddMovie(){
         event.preventDefault();
         dispatch({type: 'ADD_NEW_MOVIE', payload: newMovie})
     }
-    const handleChange = (event) => {
-        this.setState({[event.target.genreId] : event.target.value})
+    const cancelAdd = () => {
+        setTitle('');
+        setPoster('');
+        setDescription('');
+        setGenreId(0);
+        history.push('/');
     }
     
     useEffect(() => {
@@ -28,19 +34,22 @@ function AddMovie(){
     }, [])
 
     return (
-        <form onSubmit={addMovie}>
-            <h4>Add a new move:</h4>
-            <input onChange={(event) => setTitle(event.target.value)} value={title} placeholder="Title of Movie"></input>
-            <input onChange={(event) => setPoster(event.target.value)} value={poster} placeholder="Url for Movie Poster"></input>
-            <textarea onChange={(event) => setDescription(event.target.value)} value={description} placeholder="Movie Description" />
-            <select value={genre.id} name='genreId' onChange={(event) => setGenreId(event.target.value)}>
-                {genre.map(genre => {
-                    return <option key={genre.id} value={genre.id}>{genre.name}</option>
-                })}
-            </select>
-            
-            <button>Add Movie</button>
-        </form>
+        <>
+            <form onSubmit={addMovie}>
+                <h4>Add a new move:</h4>
+                <input onChange={(event) => setTitle(event.target.value)} value={title} placeholder="Title of Movie"></input>
+                <input onChange={(event) => setPoster(event.target.value)} value={poster} placeholder="Url for Movie Poster"></input>
+                <textarea onChange={(event) => setDescription(event.target.value)} value={description} placeholder="Movie Description" />
+                <select value={genre.id} name='genreId' onChange={(event) => setGenreId(event.target.value)}>
+                    {genre.map(genre => {
+                        return <option key={genre.id} value={genre.id}>{genre.name}</option>
+                    })}
+                </select>
+                
+                <button>Add Movie</button> 
+            </form>
+            <button onClick={cancelAdd}>Cancel</button>
+        </>
     )
 
 }
