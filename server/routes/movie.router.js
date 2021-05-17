@@ -2,13 +2,19 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// gets the movie information from the database and sends it back to the client
 router.get('/', (req, res) => {
 
+  // querytext to get all information and send the result back to the client
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
+
+  //the results of the successful query are sent to the client
   pool.query(query)
     .then( result => {
       res.send(result.rows);
     })
+
+    // catch for error if one occurs
     .catch(err => {
       console.log('ERROR: Get all movies', err);
       res.sendStatus(500)
