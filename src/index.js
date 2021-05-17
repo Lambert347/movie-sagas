@@ -30,18 +30,24 @@ function* fetchAllMovies() {
         console.log('get all error');
     }
 }
-
+//fetch the details for the requested movie
 function* fetchDetails(action) {
     try {
-        const details = yield axios.get(`/api/movie/${action.payload}`);
-        yield put({type: 'SET_DETAILS', payload: details.data});
+        //axios get request to the server to grab the details for the movie.
+        //the movie in question is determined by the action.payload from the client
+        //this action.payload is the id of the selected movie, which is used to get the details for that movie in the database
+        const response = yield axios.get(`/api/movie/${action.payload}`)
+        yield put({type: 'SET_DETAILS', payload: response.data});
+    //catch for an error if one occurs
     } catch (error) {
         console.log('Error with getting details from the server', error)
     }
 }
-
+//adds a new movie from the client
 function* addNewMovie(action) {
     try {
+        //axios post request to send a new package of movie information from the client to the server
+        //the action.payload is that information from the client
         console.log('Adding a new movie:', action.payload);
         yield axios.post('/api/movie', action.payload);
     } catch(error) {
@@ -50,9 +56,11 @@ function* addNewMovie(action) {
     }
 
 }
-
+//function to get the genre information from the server
 function* getGenres() {
     try {
+        //axios.get request to take the information from the server and stuff 
+        // it into the store reducer to be used by the client
         const response = yield axios.get('/api/genre');
         yield put({type: 'SET_GENRES', payload: response.data});
     } catch (error) {

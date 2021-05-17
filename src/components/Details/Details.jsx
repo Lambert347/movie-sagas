@@ -25,7 +25,7 @@ function Details(){
                             <h3>Genres:</h3>
                             {details.map(detail => {
                                 return (
-                                    <div key={detail}>
+                                    <div key={detail.name}>
                                         {detail.name}
                                     </div>
                                 )

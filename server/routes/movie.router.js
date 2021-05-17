@@ -17,7 +17,13 @@ router.get('/', (req, res) => {
 
 //get the specific details from the server
 router.get('/:id', (req, res) => {
+  //the id, which determines which information to get from the database, is the request parameters
+  //this is the id of the movie (in the database) that was clicked on in the client, which was sent by the index
   const detailsToGet = req.params.id;
+  //query text to go into the database
+  ////the query text selects the requested information from the database
+  //it also joins the three tables together to access both the information for the movie 
+  //and the genre(s) for the movie as well
   const queryText = `SELECT title, name, description, poster, genre_id, genres.name FROM movies_genres 
   JOIN movies ON movies.id = movies_genres.movie_id
   JOIN genres ON genres.id = movies_genres.genre_id
@@ -26,6 +32,7 @@ router.get('/:id', (req, res) => {
   .then(result => {
     res.send(result.rows);
   })
+  //catch for error in case one occurs
   .catch(error => {
     console.log('Error with getting details for movie', error);
     res.sendStatus(500);
