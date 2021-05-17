@@ -1,12 +1,14 @@
-import {useDispatch, useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {useEffect} from 'react';
 
+
+//function to render the details to the dom
 function Details(){
+    //set both history and details as constants 
+    //the details is taken from the store, which has the information 
+    //requested from the server for the specific move that was clicked in the MovieItem
     const history = useHistory();
-    const dispatch = useDispatch();
     const details = useSelector(store => store.details);
-    console.log(details[0]);
 
 
     const returnHome = () => {
