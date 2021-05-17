@@ -13,7 +13,7 @@ function AddMovie(){
     const [title, setTitle] = useState('');
     const [poster, setPoster] = useState('');
     const [description, setDescription] = useState('');
-    const [genreId, setGenreId] = useState(0);
+    const [genreId, setGenreId] = useState(1);
 
     //gets the genre information from the store
     //critical for the dropdown menu to work

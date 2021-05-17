@@ -1,5 +1,6 @@
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
+import './MovieItem.css'
 
 //function to handle the rendering of each individual movie object
 function MovieItem(props) {
@@ -21,7 +22,7 @@ function MovieItem(props) {
 
     //renders the page to the dom
     return (
-        <section>
+        <section className="MovieItem">
             <div>
                 {/* renders the title and the image for the poster. */}
                 <h3>{movie.title}</h3>
