@@ -31,6 +31,7 @@ function AddMovie(){
     const addMovie = (event) => {
         event.preventDefault();
         dispatch({type: 'ADD_NEW_MOVIE', payload: newMovie})
+        history.push('/');
     }
 
     //function to cancel the addition of a new movie. Takes the user back to the homepage and clears the inputs
